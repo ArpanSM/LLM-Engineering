@@ -41,5 +41,3 @@ Key findings:
 - 100% relative improvement in accuracy after fine-tuning
 - Demonstrates effectiveness of domain-specific adaptation
 - Achieved using parameter-efficient fine-tuning (PEFT) with LoRA
-
-## Project Structure

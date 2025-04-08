@@ -75,12 +75,30 @@ router = Router(
                 "model": "groq/qwen-qwq-32b",
                 "api_key": os.getenv("GROQ_API_KEY_1")
             }
+        },
+        {
+            "model_name": "openrouter/deepseek/deepseek-chat-v3-0324:free",
+            "litellm_params":
+            {
+                "model": "openrouter/deepseek/deepseek-chat-v3-0324",
+                "api_key": os.getenv("OPEN_ROUTER_API_KEY_1")
+            }
+        },
+        {
+            "model_name": "openrouter/deepseek/deepseek-r1:free",
+            "litellm_params":
+            {
+                "model": "openrouter/deepseek/deepseek-r1",
+                "api_key": os.getenv("OPEN_ROUTER_API_KEY_1")
+            }
         }
     ]
 )
 
 def call_litellm(**kwargs):
     response = router.completion(**kwargs)
+    cost = completion_cost(response)
+    print(f"{kwargs.get('model')} Cost: {cost}")
     output = response.choices[0].message.content
     if kwargs.get('response_format'):
         output = json.loads(output)
